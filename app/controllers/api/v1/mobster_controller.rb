@@ -14,6 +14,16 @@ module Api
         render json: { success: false, message: e.message }, status: :unprocessable_entity
       end
 
+      def check
+        response = @classifier_service.check(query: params[:query])
+
+        render json: { success: true, message: 'Classification has been found', classification: response }, status: :ok
+      rescue ClassifierService::ClassifierNotFoundError => e
+        render json: { success: false, message: e.message }, status: :not_found
+      rescue ClassifierService::ClassifierServiceError => e
+        render json: { success: false, message: e.message }, status: :unprocessable_entity
+      end
+
       private
 
       def classify_params
