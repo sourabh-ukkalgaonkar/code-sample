@@ -3,21 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Mobster::Client' do
-  let(:valid_data) do
-    { data:
-      [
-        {
-          category_name: 'Good',
-          values: ['Make time for exercise.', 'Drink at least eight glasses of water a day.', 'Do bodywork.',
-                   'Assign priorities to your tasks.', 'Celebrate small victories.']
-        },
-        {
-          category_name: 'Bad',
-          values: ['Being Too Hard on Yourself', 'Leaving Things to the Last Minute', 'Focusing on the Negatives',
-                   'Blaming', 'Sour Grapes']
-        }
-      ] }
-  end
+  include_context 'common data'
 
   let(:mobster_client) { ::Mobster::Client.new }
 
@@ -40,7 +26,7 @@ RSpec.describe 'Mobster::Client' do
         "message": 'Data has been trained successfully'
       }.to_json, headers: {})
 
-    response = mobster_client.classify(valid_data)
+    response = mobster_client.classify({ data: valid_data })
     response_json(response)
 
     expect(response.code).to be(200)

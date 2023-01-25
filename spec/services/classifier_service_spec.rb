@@ -3,20 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'ClassifierService' do
-  let(:valid_data) do
-    [
-      {
-        category_name: 'Good',
-        values: ['Make time for exercise.', 'Drink at least eight glasses of water a day.', 'Do bodywork.',
-                 'Assign priorities to your tasks.', 'Celebrate small victories.']
-      },
-      {
-        category_name: 'Bad',
-        values: ['Being Too Hard on Yourself', 'Leaving Things to the Last Minute', 'Focusing on the Negatives',
-                 'Blaming', 'Sour Grapes']
-      }
-    ]
-  end
+  include_context 'common data'
 
   let(:subject) { ClassifierService.new }
 
@@ -36,15 +23,15 @@ RSpec.describe 'ClassifierService' do
     end
 
     it 'should return Good clasification' do
-      expect(subject.check(query: 'exercise')).to eq('Good')
+      expect(subject.check(query: exercise)).to eq(good)
     end
 
     it 'should return Bad clasification' do
-      expect(subject.check(query: 'Leaving')).to eq('Bad')
+      expect(subject.check(query: leaving)).to eq(bad)
     end
 
     it 'should raise ClassifierNotFoundError error' do
-      expect { subject.check(query: 'test') }.to raise_error(ClassifierService::ClassifierNotFoundError)
+      expect { subject.check(query: test) }.to raise_error(ClassifierService::ClassifierNotFoundError)
     end
   end
 end
