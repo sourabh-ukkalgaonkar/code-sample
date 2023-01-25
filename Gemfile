@@ -48,3 +48,4 @@ group :development do
 end
 
 gem 'classifier-reborn'
+gem 'rest-client'
