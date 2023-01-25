@@ -69,6 +69,9 @@ GEM
     bootsnap (1.15.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    classifier-reborn (2.3.0)
+      fast-stemmer (~> 1.0)
+      matrix (~> 0.4)
     concurrent-ruby (1.2.0)
     crass (1.0.6)
     date (3.3.3)
@@ -76,6 +79,7 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     erubi (1.12.0)
+    fast-stemmer (1.0.2)
     globalid (1.0.1)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -92,6 +96,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.2)
+    matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
@@ -161,6 +166,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  classifier-reborn
   debug
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.1)
